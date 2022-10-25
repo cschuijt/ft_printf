@@ -6,14 +6,14 @@
 /*   By: cschuijt <cschuijt@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/24 21:17:31 by cschuijt      #+#    #+#                 */
-/*   Updated: 2022/10/25 16:54:07 by cschuijt      ########   odam.nl         */
+/*   Updated: 2022/10/25 16:56:18 by cschuijt      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "ft_printf.h"
 
-int	print_nbr_b(long long int n, char *base, int c)
+int	print_nbr_b(long long int n, char *base)
 {
 	long	bl;
 	int		i;
