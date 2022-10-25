@@ -6,13 +6,12 @@
 /*   By: cschuijt <cschuijt@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/24 21:17:31 by cschuijt      #+#    #+#                 */
-/*   Updated: 2022/10/24 23:18:20 by cschuijt      ########   odam.nl         */
+/*   Updated: 2022/10/25 11:35:03 by cschuijt      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include "libft/libft.h"
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	print_nbr_sb(long n, char *base)
 {

@@ -6,15 +6,14 @@
 /*   By: cschuijt <cschuijt@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/24 11:14:17 by cschuijt      #+#    #+#                 */
-/*   Updated: 2022/10/24 23:09:55 by cschuijt      ########   odam.nl         */
+/*   Updated: 2022/10/25 11:34:55 by cschuijt      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include <unistd.h>
 #include <stddef.h>
-#include "libft/libft.h"
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 static int	replace_percent(const char *str, va_list *valist)
 {
