@@ -6,7 +6,7 @@
 /*   By: cschuijt <cschuijt@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/24 11:14:17 by cschuijt      #+#    #+#                 */
-/*   Updated: 2022/10/25 11:34:55 by cschuijt      ########   odam.nl         */
+/*   Updated: 2022/10/25 16:54:22 by cschuijt      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	replace_percent(const char *str, va_list *valist)
 	if (*str == 'd' || *str == 'i')
 		return (print_nbr_b(va_arg(*valist, long), "0123456789"));
 	if (*str == 'u')
-		return (print_nbr_sb(va_arg(*valist, unsigned long), "0123456789"));
+		return (print_nbr_b(va_arg(*valist, long), "0123456789"));
 	if (*str == '%')
 	{
 		write(1, "%", 1);
