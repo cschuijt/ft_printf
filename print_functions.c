@@ -6,7 +6,7 @@
 /*   By: cschuijt <cschuijt@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/24 21:17:31 by cschuijt      #+#    #+#                 */
-/*   Updated: 2022/10/25 11:35:03 by cschuijt      ########   odam.nl         */
+/*   Updated: 2022/10/25 16:00:13 by cschuijt      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ int	print_nbr_b(unsigned long n, char *base)
 	int		i;
 
 	bl = ft_strlen(base);
-	if (n > bl)
+	if (n >= bl)
 		print_nbr_b(n / bl, base);
 	write(1, &base[n % bl], 1);
-	i = 0;
-	while (n)
+	i = 1;
+	while (n >= bl)
 	{
 		n /= bl;
 		i++;
@@ -59,6 +59,11 @@ int	print_string(char *str)
 {
 	int	l;
 
+	if (!str)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
 	l = ft_strlen(str);
 	write(1, str, l);
 	return (l);
