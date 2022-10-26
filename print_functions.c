@@ -6,7 +6,7 @@
 /*   By: cschuijt <cschuijt@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/24 21:17:31 by cschuijt      #+#    #+#                 */
-/*   Updated: 2022/10/26 13:49:36 by cschuijt      ########   odam.nl         */
+/*   Updated: 2022/10/26 14:46:07 by cschuijt      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,22 @@ int	print_char(int c)
 	return (1);
 }
 
-int	print_pointer(void *ptr)
+int	print_pointer(unsigned long n)
 {
-	int	i;
+	unsigned long	bl;
+	char			*base;
+	int				i;
 
-	i = 2;
-	write(1, "0x", 2);
-	i += print_nbr_ub((unsigned long) ptr, "0123456789abcdef");
+	base = "0123456789abcdef";
+	i = 1;
+	bl = ft_strlen(base);
+	if (n >= bl)
+		print_pointer(n / bl);
+	write(1, &base[n % bl], 1);
+	while (n >= bl)
+	{
+		n /= bl;
+		i++;
+	}
 	return (i);
 }
