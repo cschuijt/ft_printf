@@ -6,7 +6,7 @@
 /*   By: cschuijt <cschuijt@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/24 11:14:17 by cschuijt      #+#    #+#                 */
-/*   Updated: 2022/10/25 16:54:22 by cschuijt      ########   odam.nl         */
+/*   Updated: 2022/10/26 13:49:49 by cschuijt      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,25 @@
 #include <stddef.h>
 #include "ft_printf.h"
 
-static int	replace_percent(const char *str, va_list *valist)
+static int	replace_percent(const char *str, va_list valist)
 {
 	str++;
 	if (*str == '\0')
 		return (0);
 	if (*str == 'c')
-		return (print_char(va_arg(*valist, int)));
+		return (print_char(va_arg(valist, int)));
 	if (*str == 's')
-		return (print_string(va_arg(*valist, char *)));
+		return (print_string(va_arg(valist, char *)));
 	if (*str == 'p')
-		return (print_pointer(va_arg(*valist, void *)));
+		return (print_pointer(va_arg(valist, void *)));
 	if (*str == 'x')
-		return (print_nbr_b(va_arg(*valist, long), "0123456789abcdef"));
+		return (print_nbr_ub(va_arg(valist, long), "0123456789abcdef"));
 	if (*str == 'X')
-		return (print_nbr_b(va_arg(*valist, long), "0123456789ABCDEF"));
+		return (print_nbr_ub(va_arg(valist, long), "0123456789ABCDEF"));
 	if (*str == 'd' || *str == 'i')
-		return (print_nbr_b(va_arg(*valist, long), "0123456789"));
+		return (print_nbr_b(va_arg(valist, int), "0123456789"));
 	if (*str == 'u')
-		return (print_nbr_b(va_arg(*valist, long), "0123456789"));
+		return (print_nbr_ub(va_arg(valist, unsigned int), "0123456789"));
 	if (*str == '%')
 	{
 		write(1, "%", 1);
@@ -53,7 +53,7 @@ int	ft_printf(const char *str, ...)
 	{
 		if (*str == '%')
 		{
-			i += replace_percent(str, &valist);
+			i += replace_percent(str, valist);
 			str++;
 		}
 		else

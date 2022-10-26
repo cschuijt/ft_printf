@@ -6,28 +6,49 @@
 /*   By: cschuijt <cschuijt@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/24 21:17:31 by cschuijt      #+#    #+#                 */
-/*   Updated: 2022/10/25 16:56:18 by cschuijt      ########   odam.nl         */
+/*   Updated: 2022/10/26 13:49:36 by cschuijt      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "ft_printf.h"
 
-int	print_nbr_b(long long int n, char *base)
+int	print_nbr_b(int n, char *base)
 {
-	long	bl;
-	int		i;
+	long			bl;
+	int				i;
+	unsigned int	un;
 
 	i = 1;
 	if (n < 0)
 	{
 		write(1, "-", 1);
-		n = -n;
+		un = -n;
 		i++;
 	}
+	else
+		un = n;
+	bl = ft_strlen(base);
+	if (un >= bl)
+		print_nbr_b(un / bl, base);
+	write(1, &base[un % bl], 1);
+	while (un >= bl)
+	{
+		un /= bl;
+		i++;
+	}
+	return (i);
+}
+
+int	print_nbr_ub(unsigned int n, char *base)
+{
+	long	bl;
+	int		i;
+
+	i = 1;
 	bl = ft_strlen(base);
 	if (n >= bl)
-		print_nbr_b(n / bl, base);
+		print_nbr_ub(n / bl, base);
 	write(1, &base[n % bl], 1);
 	while (n >= bl)
 	{
@@ -63,6 +84,6 @@ int	print_pointer(void *ptr)
 
 	i = 2;
 	write(1, "0x", 2);
-	i += print_nbr_b((unsigned long) ptr, "0123456789abcdef");
+	i += print_nbr_ub((unsigned long) ptr, "0123456789abcdef");
 	return (i);
 }
