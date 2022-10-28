@@ -6,7 +6,7 @@
 /*   By: cschuijt <cschuijt@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/24 11:14:17 by cschuijt      #+#    #+#                 */
-/*   Updated: 2022/10/26 14:45:32 by cschuijt      ########   odam.nl         */
+/*   Updated: 2022/10/28 14:42:34 by cschuijt      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,30 +40,44 @@ static int	replace_percent(const char *str, va_list valist)
 		write(1, "%", 1);
 		return (1);
 	}
-	return (0);
+	return (-1);
 }
 
-int	ft_printf(const char *str, ...)
+int	funny_little_loop_function(const char *str, va_list valist)
 {
-	va_list			valist;
-	unsigned int	i;
+	int	i;
+	int	j;
 
 	i = 0;
-	va_start(valist, str);
 	while (*str)
 	{
 		if (*str == '%')
 		{
-			i += replace_percent(str, valist);
-			str++;
+			j = replace_percent(str, valist);
+			if (j < 0)
+				str++;
+			else
+			{
+				str += 2;
+				i += j;
+			}
 		}
 		else
 		{
-			write(1, str, 1);
-			i++;
+			i += write(1, str, 1);
+			str++;
 		}
-		str++;
 	}
+	return (i);
+}
+
+int	ft_printf(const char *str, ...)
+{
+	va_list		valist;
+	int			i;
+
+	va_start(valist, str);
+	i = funny_little_loop_function(str, valist);
 	va_end(valist);
 	return (i);
 }
