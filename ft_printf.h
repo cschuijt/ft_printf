@@ -17,11 +17,11 @@
 
 int		ft_printf(const char *str, ...);
 
-int		print_nbr_b(int n, char *base);
-int		print_nbr_ub(unsigned int n, char *base);
-int		print_string(char *str);
-int		print_char(int c);
-int		print_pointer(unsigned long n);
+int		printf_nbr_b(int n, char *base);
+int		printf_nbr_ub(unsigned int n, char *base);
+int		printf_string(char *str);
+int		printf_char(int c);
+int		printf_pointer(unsigned long n);
 
 size_t	ft_strlen(const char *s);
 #endif

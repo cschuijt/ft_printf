@@ -13,7 +13,7 @@
 #include <unistd.h>
 #include "ft_printf.h"
 
-int	print_nbr_b(int n, char *base)
+int	printf_nbr_b(int n, char *base)
 {
 	long			bl;
 	int				i;
@@ -30,7 +30,7 @@ int	print_nbr_b(int n, char *base)
 		un = n;
 	bl = ft_strlen(base);
 	if (un >= bl)
-		print_nbr_b(un / bl, base);
+		printf_nbr_b(un / bl, base);
 	write(1, &base[un % bl], 1);
 	while (un >= bl)
 	{
@@ -40,7 +40,7 @@ int	print_nbr_b(int n, char *base)
 	return (i);
 }
 
-int	print_nbr_ub(unsigned int n, char *base)
+int	printf_nbr_ub(unsigned int n, char *base)
 {
 	long	bl;
 	int		i;
@@ -48,7 +48,7 @@ int	print_nbr_ub(unsigned int n, char *base)
 	i = 1;
 	bl = ft_strlen(base);
 	if (n >= bl)
-		print_nbr_ub(n / bl, base);
+		printf_nbr_ub(n / bl, base);
 	write(1, &base[n % bl], 1);
 	while (n >= bl)
 	{
@@ -58,7 +58,7 @@ int	print_nbr_ub(unsigned int n, char *base)
 	return (i);
 }
 
-int	print_string(char *str)
+int	printf_string(char *str)
 {
 	int	l;
 
@@ -72,13 +72,13 @@ int	print_string(char *str)
 	return (l);
 }
 
-int	print_char(int c)
+int	printf_char(int c)
 {
 	write(1, &c, 1);
 	return (1);
 }
 
-int	print_pointer(unsigned long n)
+int	printf_pointer(unsigned long n)
 {
 	unsigned long	bl;
 	char			*base;
@@ -88,7 +88,7 @@ int	print_pointer(unsigned long n)
 	i = 1;
 	bl = ft_strlen(base);
 	if (n >= bl)
-		print_pointer(n / bl);
+		printf_pointer(n / bl);
 	write(1, &base[n % bl], 1);
 	while (n >= bl)
 	{

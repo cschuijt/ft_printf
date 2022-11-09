@@ -15,26 +15,26 @@
 #include <stddef.h>
 #include "ft_printf.h"
 
-static int	replace_percent(const char *str, va_list valist)
+static int	printf_replace_percent(const char *str, va_list valist)
 {
 	str++;
 	if (*str == 'c')
-		return (print_char(va_arg(valist, int)));
+		return (printf_char(va_arg(valist, int)));
 	if (*str == 's')
-		return (print_string(va_arg(valist, char *)));
+		return (printf_string(va_arg(valist, char *)));
 	if (*str == 'p')
 	{
 		write(1, "0x", 2);
-		return (2 + print_pointer(va_arg(valist, unsigned long)));
+		return (2 + printf_pointer(va_arg(valist, unsigned long)));
 	}
 	if (*str == 'x')
-		return (print_nbr_ub(va_arg(valist, long), "0123456789abcdef"));
+		return (printf_nbr_ub(va_arg(valist, long), "0123456789abcdef"));
 	if (*str == 'X')
-		return (print_nbr_ub(va_arg(valist, long), "0123456789ABCDEF"));
+		return (printf_nbr_ub(va_arg(valist, long), "0123456789ABCDEF"));
 	if (*str == 'd' || *str == 'i')
-		return (print_nbr_b(va_arg(valist, int), "0123456789"));
+		return (printf_nbr_b(va_arg(valist, int), "0123456789"));
 	if (*str == 'u')
-		return (print_nbr_ub(va_arg(valist, unsigned int), "0123456789"));
+		return (printf_nbr_ub(va_arg(valist, unsigned int), "0123456789"));
 	if (*str == '%')
 	{
 		write(1, "%", 1);
@@ -43,7 +43,7 @@ static int	replace_percent(const char *str, va_list valist)
 	return (-1);
 }
 
-int	funny_little_loop_function(const char *str, va_list valist)
+int	printf_loop(const char *str, va_list valist)
 {
 	int	i;
 	int	j;
@@ -53,7 +53,7 @@ int	funny_little_loop_function(const char *str, va_list valist)
 	{
 		if (*str == '%')
 		{
-			j = replace_percent(str, valist);
+			j = printf_replace_percent(str, valist);
 			if (j < 0)
 				str++;
 			else
@@ -77,7 +77,7 @@ int	ft_printf(const char *str, ...)
 	int			i;
 
 	va_start(valist, str);
-	i = funny_little_loop_function(str, valist);
+	i = printf_loop(str, valist);
 	va_end(valist);
 	return (i);
 }
